@@ -1,211 +1,211 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// COPY.JS — Fuente única de TODO el texto visible de la landing.
-// Doc §7: cero texto hardcodeado en componentes. Si está en pantalla, está aquí.
+// COPY.JS — KOGU maandumislehe nähtava teksti allikas.
+// Doc §7: Komponentidesse ei tohi koodi sisse kirjutada (hardcode). Kõik, mis on ekraanil, asub siin.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const copy = {
-  // ── SEO / METADATA (Layout.astro lo lee) ──────────────────────────────────
+  // ── SEO / METADATA (Loetakse Layout.astro poolt) ───────────────────────────
   metadata: {
-    lang: 'pt-BR',
-    title: '150 receitas de drinks gourmet',
+    lang: 'et',
+    title: '150 esmaklassilist kokteiliretsepti koduseks nautimiseks',
     description:
-      'Receitas de drinks prontas para vender — ingredientes simples, produção rápida e margem de lucro alta. Comece a faturar até R$3.000/mês com bônus exclusivos.',
+      'Peoks valmis kokteiliretseptid — lihtsad koostisosad, kiire valmistamine. Avalda sõpradele muljet, säästa raha kallite baaride arvelt ja saa õhtu staariks. Sisaldab eksklusiivseid boonuseid.',
     canonical: 'https://150receitascopao.netlify.app',
     ogImage: '/og-cover.jpg',
     ogType: 'website',
-    siteName: 'MUNDO DOS DRINKS',
+    siteName: 'KOKTEILIMAAILM',
   },
 
-  // ── 1. TIMER STICKY ARRIBA ────────────────────────────────────────────────
+  // ── 1. TIMER STICKY PÄIS ───────────────────────────────────────────────────
   timerBar: {
     icon: '⏰',
-    label: 'Promoção encerra em:',
+    label: 'Pakkumine aegub:',
     initialMinutes: 9,
     initialSeconds: 57,
   },
 
-  // ── 2. HERO ───────────────────────────────────────────────────────────────
+  // ── 2. HERO SEKTSIOON ──────────────────────────────────────────────────────
   hero: {
-    tag: '🍋 Oferta Exclusiva',
-    titleHighlight: '150 Receitas de copão Gourmet',
-    titleConnector: 'para Vender',
-    titleHighlightGreen: 'R$3.000',
-    titleEnd: 'Começando do Zero',
-    deliveryLabel: 'Você recebe imediatamente no',
+    tag: '🍋 Eksklusiivne pakkumine',
+    titleHighlight: '150 suurepärast kokteiliretsepti',
+    titleConnector: 'sinu',
+    titleHighlightGreen: 'naudinguks',
+    titleEnd: 'isegi kui oled täielik algaja',
+    deliveryLabel: 'Saad kohese ligipääsu siit:',
     deliveryChannels: [
       { label: 'WhatsApp', kind: 'whatsapp' },
-      { label: 'Email', kind: 'email' },
+      { label: 'E-post', kind: 'email' },
     ],
-    videoAlt: 'Apresentação do kit 150 receitas de drinks gourmet',
-    ctaLabel: '✅ QUERO GARANTIR MINHAS RECEITAS AGORA',
-    ctaSub: '🔒 Compra 100% segura • Acesso imediato',
+    videoAlt: '150 koduse kokteiliretsepti komplekti tutvustus',
+    ctaLabel: '✅ TAHAN OMA RETSEPTE KOHE KÄTTE SAADA',
+    ctaSub: '🔒 100% turvaline ost • Kohene ligipääs',
   },
 
-  // ── 3. BENEFÍCIOS ─────────────────────────────────────────────────────────
+  // ── 3. EELISED (BENEFITS) ──────────────────────────────────────────────────
   benefits: {
     intro:
-      'Receitas de drinks prontas para vender — ingredientes simples, produção rápida,',
-    introStrong: 'alto valor percebido e margem de lucro que vai te surpreender!',
+      'Retseptid, mis on loodud maksimaalseks naudinguks — lihtsad koostisosad, kiire valmistamine,',
+    introStrong: 'uskumatu maitse ja välimus, mis jätab iga külalise sõnatuks!',
     items: [
-      'Qualquer pessoa consegue fazer',
-      'Sem cozinha profissional ou equipamentos caros',
-      'Receitas prontas, testadas e com custo baixo',
-      'Perfeito para vender no WhatsApp, rua ou delivery',
+      'Valmistada iga kokteili ilma igasuguse varasema kogemuseta',
+      'Teha maagiat ilma profiseadmete või kalli köögita',
+      'Nautida järeleproovitud retsepte taskukohaste koostisosadega',
+      'Olla iga koduse peo, saunaõhtu või koosviibimise vaieldamatu staar',
     ],
-    ctaLabel: '🍹 QUERO GARANTIR MINHAS RECEITAS AGORA',
+    ctaLabel: '🍹 TAHAN OMA RETSEPTE KOHE KÄTTE SAADA',
   },
 
-  // ── 4. CARRUSEL DE RECETAS ────────────────────────────────────────────────
+  // ── 4. RETSEPTIDE KARUSSELL ────────────────────────────────────────────────
   carousel: {
-    title: '🍹 Algumas das receitas que você irá',
-    titleHighlight: 'aprender e lucrar!',
+    title: '🍹 Mõned retseptid, mida saad',
+    titleHighlight: 'sõpradega nautida!',
     slides: [
-      { caption: 'Copão Beijo Doce', alt: 'Drink Copão Beijo Doce' },
+      { caption: 'Magus suudlus', alt: 'Kokteil Magus suudlus' },
       {
-        caption: 'Espanhola de Vinho c/ Maracujá',
-        alt: 'Drink Espanhola de Vinho com Maracujá',
+        caption: 'Hispaania vein granadilliga',
+        alt: 'Kokteil Hispaania vein granadilliga',
       },
-      { caption: 'MaracuBeats Cremosa', alt: 'Drink MaracuBeats Cremosa' },
-      { caption: 'Batida de Bala Halls', alt: 'Drink Batida de Bala Halls' },
-      { caption: 'Drink do Verão', alt: 'Drink do Verão' },
+      { caption: 'Kreemine Granadilli-Beats', alt: 'Kokteil Kreemine Granadilli-Beats' },
+      { caption: 'Halls kommi kokteil', alt: 'Halls kommi kokteil' },
+      { caption: 'Suvebriis', alt: 'Kokteil Suvebriis' },
       {
-        caption: 'Caipirinha de Maracujá c/ Café',
-        alt: 'Drink Caipirinha de Maracujá com Café',
+        caption: 'Caipirinha granadilli ja kohviga',
+        alt: 'Kokteil Caipirinha granadilli ja kohviga',
       },
     ],
-    prevLabel: 'Slide anterior',
-    nextLabel: 'Próximo slide',
-    dotLabel: 'Ir para o slide',
+    prevLabel: 'Eelmine slaid',
+    nextLabel: 'Järgmine slaid',
+    dotLabel: 'Slaidile',
   },
 
-  // ── 5. BÔNUS ──────────────────────────────────────────────────────────────
+  // ── 5. BOONUSED ────────────────────────────────────────────────────────────
   bonuses: {
-    title: '🎁 E ainda tem',
-    titleHighlight: 'BÔNUS!',
+    title: '🎁 Ja loomulikult on meil sulle',
+    titleHighlight: 'BOONUSED!',
     items: [
       {
-        tag: 'Bônus 1',
-        title: '50 Receitas Alcoólicas de Batidas na Garrafa',
-        description: 'Receitas prontas para vender, sem os bônus exclusivos.',
-        alt: '50 Receitas Alcoólicas de Batidas na Garrafa',
+        tag: 'Boonus 1',
+        title: '50 alkohoolsete šottide ja punšide retsepti',
+        description: 'Ideaalne peojookide valik, mida kiirelt valmistada ja seltskonnaga jagada.',
+        alt: '50 alkohoolsete šottide ja punšide retsepti',
       },
       {
-        tag: 'Bônus 2',
-        title: 'Tabela de Precificação — Quanto Cobrar em Cada Receita',
+        tag: 'Boonus 2',
+        title: 'Nutikas ostunimekiri — kuidas säästa raha',
         description:
-          'Saiba exatamente quanto cobrar para lucrar de verdade em cada drink que vender.',
-        alt: 'Tabela de Precificação dos drinks',
+          'Uuri välja, milliseid koostisosi täpselt osta, et teha tipptasemel kokteile, ilma et tühjendaksid rahakotti kallites baarides.',
+        alt: 'Ostunimekiri ja kalkulaator',
       },
       {
-        tag: 'Bônus 3',
-        title: '✅ Roteiro Pronto: Como Anunciar no WhatsApp e Fechar Vendas',
-        description: 'Scripts prontos para você copiar, colar e já começar a vender.',
-        alt: 'Roteiro de vendas pelo WhatsApp',
+        tag: 'Boonus 3',
+        title: '✅ Käsiraamat: Kuidas korraldada ideaalset kokteiliõhtut',
+        description: 'Valmis ideed ja sammud, kuidas luua unustamatu elamus ja oma külalisi pahviks lüüa.',
+        alt: 'Koduse peo käsiraamat',
       },
       {
-        tag: 'Bônus 4',
-        title: 'Videoaula: Como Embalar e Apresentar para Vender Mais',
+        tag: 'Boonus 4',
+        title: 'Videoõpetus: Kuidas kaunistada ja serveerida nagu professionaal',
         description:
-          'Aprenda a deixar seus produtos irresistíveis e cobrar mais caro por isso.',
-        alt: 'Videoaula sobre embalagem e apresentação',
+          'Õpi ilusa esitluse saladusi, mis muudavad tavalise joogi viietärniliseks meistriteoseks.',
+        alt: 'Videoõpetus kokteilide kaunistamiseks',
       },
     ],
   },
 
-  // ── 6. PREÇO ──────────────────────────────────────────────────────────────
+  // ── 6. HINNAD (PRICING) ────────────────────────────────────────────────────
   pricing: {
     sectionId: 'precos',
-    title: 'Escolha como quer começar hoje:',
+    title: 'Vali, kuidas soovid täna alustada:',
     complete: {
-      badge: '⭐ Mais Vendido',
-      title: 'Kit Completo +150 Receitas de Drinks',
-      descriptionLead: '+150 receitas de drinks na garrafa prontas para vender + todos os',
-      descriptionStrong: 'bônus exclusivos',
-      descriptionTail: 'para você faturar até R$3.000/mês.',
-      mockupAlt: 'Mockup do Kit 150 Receitas de Copão Gourmet',
-      includesLabel: '🎁 Inclui todos os bônus:',
+      badge: '⭐ Kõige populaarsem',
+      title: 'Täispakett: 150+ kokteiliretsepti',
+      descriptionLead: '150+ retsepti uskumatute koduste kokteilide jaoks + kõik',
+      descriptionStrong: 'eksklusiivsed boonused,',
+      descriptionTail: 'et saaksid parimaks kodubaarmeniks.',
+      mockupAlt: 'Täispaketi 150 retseptiga makett',
+      includesLabel: '🎁 Sisaldab kõiki boonuseid:',
       items: [
-        '+150 receitas de drinks gourmet',
-        'Lista de fornecedores baratos para garrefinhas',
-        'Tabela de precificação — todos os drinks',
-        'Roteiro de vendas pelo WhatsApp',
-        'Videoaula: como embalar e vender mais',
+        '150+ esmaklassilist kokteiliretsepti',
+        'Nimekiri soodsatest alternatiividest kallile alkoholile',
+        'Nutika ostlemise juhend',
+        'Ideaalsete kodupidude käsiraamat',
+        'Videoõpetus professionaalseks kaunistamiseks',
       ],
-      strikePrice: 'De R$59,90',
-      price: 'R$24,90',
-      priceNote: 'acesso imediato',
-      ctaLabel: '🛒 QUERO O KIT COMPLETO',
-      footer: '✅ Acesso imediato · E-mail + WhatsApp · Garantia de 7 dias',
+      strikePrice: 'Tavahind 29.90 €',
+      price: '9.90 €',
+      priceNote: 'kohene ligipääs',
+      ctaLabel: '🛒 TAHAN TÄISPAKETTI',
+      footer: '✅ Kohene ligipääs · E-post + WhatsApp · 14-päevane garantii',
     },
   },
 
-  // ── 7. GARANTIA ───────────────────────────────────────────────────────────
+  // ── 7. GARANTII ────────────────────────────────────────────────────────────
   guarantee: {
     icon: '🛡️',
-    title: 'Garantia de 7 dias',
+    title: '14-päevane täielik garantii',
     description:
-      'Se por qualquer motivo você não gostar, devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.',
+      'Kui sa mingil põhjusel ei ole vaimustuses, maksame sulle iga viimase kui sendi tagasi. Küsimusi esitamata ja ilma liigse närvikuluta.',
   },
 
-  // ── 8. FAQ ────────────────────────────────────────────────────────────────
+  // ── 8. KKK (Korduma kippuvad küsimused) ────────────────────────────────────
   faq: {
-    title: 'Dúvidas',
-    titleHighlight: 'frequentes:',
+    title: 'Korduma kippuvad',
+    titleHighlight: 'küsimused:',
     items: [
       {
-        q: 'Preciso saber cozinhar para comprar?',
-        a: 'Não! As receitas são simples e qualquer pessoa consegue fazer, mesmo sem experiência na cozinha.',
+        q: 'Kas mul peab olema kogemusi, et neid teha?',
+        a: 'Kindlasti mitte! Retseptid on lihtsalt lahti seletatud ja igaüks saab neid valmistada, isegi kui sa pole kunagi varem ühtegi kokteili seganud.',
       },
       {
-        q: 'Preciso de equipamentos caros ou cozinha profissional?',
-        a: 'Não precisa. Tudo pode ser feito em casa com utensílios simples que você provavelmente já tem.',
+        q: 'Kas ma vajan kalleid šeikereid ja profiseadmeid?',
+        a: 'Pole vaja. Kõike saab teha kodus tavaliste riistadega, mis sul juba köögis olemas on.',
       },
       {
-        q: 'Onde vou vender os drinks?',
-        a: 'Você pode vender no WhatsApp, nas redes sociais, em festas, por delivery ou até na rua. O bônus 3 te ensina exatamente como fazer isso.',
+        q: 'Millisteks puhkudeks need kokteilid sobivad?',
+        a: 'Absoluutselt kõigeks! Alates lõõgastumisest pärast rasket tööpäeva või romantilisest õhtusöögist kuni pöörase koduse peo või saunaõhtuni sõpradega.',
       },
       {
-        q: 'Quanto posso cobrar por cada garrafa?',
-        a: 'Com a tabela de precificação incluída, você vai saber exatamente quanto cobrar para ter uma margem de lucro alta em cada venda.',
+        q: 'Kas koostisosad on kallid?',
+        a: 'Ei. Meie nutika ostunimekirjaga õpid, kuidas saavutada esmaklassiline maitse taskukohaste toodetega kohalikust supermarketist.',
       },
       {
-        q: 'Como recebo após a compra?',
-        a: 'O acesso é imediato! Você recebe no e-mail e no WhatsApp assim que o pagamento for confirmado.',
+        q: 'Kuidas ma pärast ostmist ligipääsu saan?',
+        a: 'Ligipääs on kohene! Niipea kui makse on läbi läinud, saad kõik otse e-mailile ja WhatsAppi.',
       },
       {
-        q: 'Tenho garantia se não gostar?',
-        a: 'Sim! Você tem 7 dias de garantia total. Se não gostar por qualquer motivo, devolvemos 100% do valor pago.',
+        q: 'Kas kehtib garantii, kui mulle ei meeldi?',
+        a: 'Muidugi! Sul on lausa 14-päevane täielik garantii. Kui sa pole rahul, tagastame sulle raha 100%.',
       },
     ],
   },
 
-  // ── 9. URGÊNCIA ──────────────────────────────────────────────────────────
+  // ── 9. KIIRELOOMULISUS (URGENCY) ───────────────────────────────────────────
   urgency: {
-    text: '⏰ Não fique esperando — cada dia sem vender é dinheiro perdido!',
+    text: '⏰ Ära lükka edasi — nädalavahetus läheneb ja koos sellega järjekordne igav õhtu. Muuda seda juba praegu!',
   },
 
-  // ── 10. CTA FINAL ─────────────────────────────────────────────────────────
+  // ── 10. LÕPLIK CTA ─────────────────────────────────────────────────────────
   finalCta: {
-    ctaLabel: '🍹 QUERO ACESSO ÀS 150 RECEITAS AGORA',
-    subText: '🔒 Acesso imediato • Garantia de 7 dias • Pagamento seguro',
+    ctaLabel: '🍹 TAHAN LIGIPÄÄSU 150 RETSEPTILE KOHE',
+    subText: '🔒 Kohene ligipääs • 14-päevane garantii • Turvaline makse',
   },
 
-  // ── 11. SEGURIDAD (badges) ────────────────────────────────────────────────
+  // ── 11. TURVALISUS (badges) ────────────────────────────────────────────────
   security: {
     items: [
-      { icon: '🔒', label: 'SSL Seguro' },
-      { icon: '💳', label: 'Pagamento Protegido' },
-      { icon: '📲', label: 'Acesso Imediato' },
+      { icon: '🔒', label: 'SSL kaitse' },
+      { icon: '💳', label: 'Turvaline makse' },
+      { icon: '📲', label: 'Kohene ligipääs' },
     ],
   },
 
-  // ── 12. FOOTER ────────────────────────────────────────────────────────────
+  // ── 12. JALUS (FOOTER) ─────────────────────────────────────────────────────
   footer: {
-    text: '© 2026 · MUNDO DOS DRINKS · Todos os direitos reservados',
+    text: '© 2026 · KOKTEILIMAAILM · Kõik õigused kaitstud',
   },
 
-  // ── A11Y / texto auxiliar (no visible "directamente" pero usado en aria) ──
+  // ── A11Y / abitekst ──
   a11y: {
-    skipToContent: 'Ir para o conteúdo principal',
+    skipToContent: 'Liigu põhisisu juurde',
   },
 };
