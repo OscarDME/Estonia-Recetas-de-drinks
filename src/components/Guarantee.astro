@@ -1,0 +1,19 @@
+---
+import { copy } from '../lib/copy.js';
+const { guarantee } = copy;
+---
+
+<section aria-labelledby="guarantee-title" class="bg-white py-10">
+  <div class="mx-auto max-w-3xl px-5 sm:px-8">
+    <div
+      class="rounded-3xl border border-[#b3e6c8] bg-gradient-to-br from-[#f0fff5] to-white p-5 shadow-soft sm:p-6"
+    >
+      <h2 id="guarantee-title" class="text-[15px] font-black text-[#007a30] sm:text-base">
+        {guarantee.title}
+      </h2>
+      <p class="mt-1 text-[12.5px] leading-relaxed text-brand-ink/65 sm:text-[13px]">
+        {guarantee.description}
+      </p>
+    </div>
+  </div>
+</section>

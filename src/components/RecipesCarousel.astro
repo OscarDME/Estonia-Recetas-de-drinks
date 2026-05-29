@@ -1,0 +1,167 @@
+---
+import { Image } from 'astro:assets';
+import { copy } from '../lib/copy.js';
+
+import img1 from '../assets/carousel/img-1.webp';
+import img2 from '../assets/carousel/img-2.webp';
+import img3 from '../assets/carousel/img-3.webp';
+import img4 from '../assets/carousel/img-4.webp';
+import img5 from '../assets/carousel/img-5.webp';
+import img6 from '../assets/carousel/img-6.webp';
+
+const sources = [img1, img2, img3, img4, img5, img6];
+const { carousel } = copy;
+const slides = carousel.slides.map((s, i) => ({ ...s, src: sources[i] }));
+---
+
+<section aria-labelledby="carousel-title" class="bg-white py-12">
+  <div class="mx-auto max-w-3xl px-5 sm:px-8">
+    <h2
+      id="carousel-title"
+      class="text-balance text-center text-[18px] font-black leading-snug text-brand-ink sm:text-[22px]"
+    >
+      {carousel.title}{' '}
+      <span class="text-brand-red">{carousel.titleHighlight}</span>
+    </h2>
+
+    <div class="relative mt-7 flex items-center gap-2">
+      <button
+        type="button"
+        class="carr-btn carr-prev grid h-10 w-10 shrink-0 place-items-center rounded-full border border-black/10 bg-white text-[20px] leading-none text-brand-ink shadow-soft transition hover:bg-brand-red hover:text-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-red/30"
+        aria-label={carousel.prevLabel}
+      >
+        &#8249;
+      </button>
+
+      <div class="flex-1 overflow-hidden rounded-2xl shadow-card">
+        <div class="carr-track flex transition-transform duration-500 ease-[cubic-bezier(.4,0,.2,1)]">
+          {
+            slides.map((slide, i) => (
+              <div class="relative aspect-square w-full shrink-0 overflow-hidden bg-black">
+                <Image
+                  src={slide.src}
+                  alt={slide.alt}
+                  widths={[320, 480, 640, 800]}
+                  sizes="(min-width: 768px) 600px, 92vw"
+                  formats={['avif', 'webp']}
+                  quality={82}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  class="h-full w-full object-cover"
+                />
+                <span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent px-4 pb-3 pt-8 text-center text-[13px] font-extrabold text-white">
+                  {slide.caption}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="carr-btn carr-next grid h-10 w-10 shrink-0 place-items-center rounded-full border border-black/10 bg-white text-[20px] leading-none text-brand-ink shadow-soft transition hover:bg-brand-red hover:text-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-red/30"
+        aria-label={carousel.nextLabel}
+      >
+        &#8250;
+      </button>
+    </div>
+
+    <div class="carr-dots mt-5 flex justify-center gap-2" role="tablist" aria-label={carousel.dotLabel}>
+      {
+        slides.map((_, i) => (
+          <button
+            type="button"
+            class:list={['carr-dot h-2 w-2 rounded-full bg-black/15 transition', i === 0 && 'is-active']}
+            data-idx={i}
+            aria-label={`${carousel.dotLabel} ${i + 1}`}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .carr-dot.is-active {
+    background: #ff004c;
+    transform: scale(1.4);
+  }
+</style>
+
+<script>
+  (function () {
+    const track = document.querySelector('.carr-track');
+    const dots = document.querySelectorAll('.carr-dot');
+    const prev = document.querySelector('.carr-prev');
+    const next = document.querySelector('.carr-next');
+    if (!track || !dots.length || !prev || !next) return;
+    const total = dots.length;
+    let idx = 0;
+    let autoplay;
+
+    function render() {
+      (track as HTMLElement).style.transform = `translateX(-${idx * 100}%)`;
+      dots.forEach((d, i) => {
+        d.classList.toggle('is-active', i === idx);
+        d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+      });
+    }
+    function go(delta) {
+      idx = (idx + delta + total) % total;
+      render();
+    }
+    function to(i) {
+      idx = i;
+      render();
+    }
+    function startAuto() {
+      stopAuto();
+      autoplay = setInterval(() => go(1), 3500);
+    }
+    function stopAuto() {
+      if (autoplay) clearInterval(autoplay);
+    }
+
+    prev.addEventListener('click', () => {
+      go(-1);
+      startAuto();
+    });
+    next.addEventListener('click', () => {
+      go(1);
+      startAuto();
+    });
+    dots.forEach((d) =>
+      d.addEventListener('click', () => {
+        to(Number((d as HTMLElement).dataset.idx));
+        startAuto();
+      }),
+    );
+
+    // Swipe táctil
+    let startX = 0;
+    track.addEventListener(
+      'touchstart',
+      (e) => {
+        startX = (e as TouchEvent).touches[0].clientX;
+      },
+      { passive: true },
+    );
+    track.addEventListener('touchend', (e) => {
+      const diff = startX - (e as TouchEvent).changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) {
+        go(diff > 0 ? 1 : -1);
+        startAuto();
+      }
+    });
+
+    // Pausar autoplay al hover (mejor UX)
+    const wrap = track.closest('section');
+    wrap?.addEventListener('mouseenter', stopAuto);
+    wrap?.addEventListener('mouseleave', startAuto);
+
+    render();
+    startAuto();
+  })();
+</script>

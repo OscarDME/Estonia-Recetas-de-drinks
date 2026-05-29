@@ -1,0 +1,48 @@
+---
+import { copy } from '../lib/copy.js';
+const { icon, label, initialMinutes, initialSeconds } = copy.timerBar;
+const initialSeconds_total = initialMinutes * 60 + initialSeconds;
+const initialLabel =
+  String(initialMinutes).padStart(2, '0') + ':' + String(initialSeconds).padStart(2, '0');
+---
+
+<div
+  class="sticky top-0 z-50 w-full bg-brand-red text-white shadow-[0_4px_16px_rgba(255,0,76,0.35)]"
+  role="status"
+  aria-live="polite"
+>
+  <div class="mx-auto flex max-w-3xl items-center justify-center gap-3 px-4 py-2.5">
+    <span class="inline-block animate-spin text-[15px]" aria-hidden="true">{icon}</span>
+    <span class="text-[12px] font-extrabold uppercase tracking-[0.15em] sm:text-[13px]">
+      {label}
+    </span>
+    <span
+      id="timer-bar-count"
+      class="font-mono text-[18px] font-extrabold tabular-nums tracking-wider sm:text-[20px]"
+      data-initial-seconds={initialSeconds_total}>{initialLabel}</span
+    >
+  </div>
+</div>
+
+<script>
+  (function () {
+    const el = document.getElementById('timer-bar-count');
+    if (!el) return;
+    const KEY = 'timer_end_drinks';
+    const fallback = Number(el.dataset.initialSeconds || 0);
+    let end = parseInt(sessionStorage.getItem(KEY) || '0', 10);
+    if (!end || end < Date.now()) {
+      end = Date.now() + fallback * 1000;
+      sessionStorage.setItem(KEY, String(end));
+    }
+    function tick() {
+      const diff = Math.max(0, Math.floor((end - Date.now()) / 1000));
+      const m = Math.floor(diff / 60);
+      const s = diff % 60;
+      el.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+      if (diff <= 0) clearInterval(iv);
+    }
+    tick();
+    const iv = setInterval(tick, 1000);
+  })();
+</script>

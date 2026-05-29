@@ -1,0 +1,139 @@
+---
+import { Image } from 'astro:assets';
+import { copy } from '../lib/copy.js';
+import mockup from '../assets/mockup-produto.webp';
+const { hero, pricing } = copy;
+const targetId = pricing.sectionId;
+---
+
+<section
+  aria-labelledby="hero-title"
+  class="relative isolate overflow-hidden bg-gradient-to-b from-white via-white to-[#fff8fb] pb-12 pt-10 sm:pt-14"
+>
+  <!-- Banda de color animada arriba (debajo del timer) -->
+  <div
+    class="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,#00ff5e,#FFD600,#ff004c,#00ff5e)] bg-[length:300%_100%] animate-shimmer"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="mx-auto max-w-3xl px-5 sm:px-8">
+    <!-- Tag -->
+    <div class="flex justify-center animate-fade-down">
+      <span
+        class="inline-flex items-center gap-2 rounded-full bg-brand-red px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.18em] text-white shadow-[0_8px_24px_-8px_rgba(255,0,76,0.6)]"
+      >
+        {hero.tag}
+      </span>
+    </div>
+
+    <!-- Title -->
+    <h1
+      id="hero-title"
+      class="mt-6 text-balance text-center text-[34px] font-black leading-[1.05] tracking-tight text-brand-ink animate-fade-down sm:text-[52px]"
+      style="animation-delay:.08s"
+    >
+      <span class="text-brand-red">{hero.titleHighlight}</span>
+      <span class="block text-brand-ink/90">{hero.titleConnector}</span>
+      <span class="text-brand-green">{hero.titleHighlightGreen}</span>
+      <span class="block text-brand-ink/90">{hero.titleEnd}</span>
+    </h1>
+
+    <!-- Delivery info card -->
+    <div class="mt-7 flex justify-center animate-fade-up" style="animation-delay:.18s">
+      <div
+        class="inline-flex flex-col items-center gap-2 rounded-2xl border border-black/5 bg-white/80 px-5 py-3 shadow-soft backdrop-blur"
+      >
+        <span class="text-[10px] font-bold uppercase tracking-[0.18em] text-brand-ink/70">
+          {hero.deliveryLabel}
+        </span>
+        <div class="flex items-center gap-3 text-[13px] font-semibold text-brand-ink">
+          {
+            hero.deliveryChannels.map((ch, i) => (
+              <>
+                {i > 0 && <span class="text-black/15" aria-hidden="true">|</span>}
+                <span class="inline-flex items-center gap-1.5">
+                  {ch.kind === 'whatsapp' && (
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52Z"
+                        fill="#25D366"
+                      />
+                    </svg>
+                  )}
+                  {ch.kind === 'email' && (
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <rect
+                        x="2"
+                        y="4"
+                        width="20"
+                        height="16"
+                        rx="2"
+                        stroke="#FF6B00"
+                        stroke-width="2"
+                      />
+                      <path
+                        d="M2 7l10 7 10-7"
+                        stroke="#FF6B00"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  )}
+                  {ch.label}
+                </span>
+              </>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Mockup image -->
+    <div class="mt-8 animate-fade-up" style="animation-delay:.28s">
+      <div
+        class="relative mx-auto w-full max-w-[420px] overflow-hidden rounded-2xl"
+      >
+        <Image
+          src={mockup}
+          alt={hero.videoAlt}
+          widths={[420, 640, 840]}
+          sizes="(min-width:640px) 420px, 90vw"
+          formats={['avif', 'webp']}
+          quality={88}
+          loading="eager"
+          class="h-auto w-full"
+        />
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-7 animate-fade-up" style="animation-delay:.38s">
+      <a
+        href={`#${targetId}`}
+        data-cta="hero"
+        class="group relative block w-full overflow-hidden rounded-2xl bg-gradient-to-br from-brand-green-light to-brand-green-dark px-6 py-5 text-center text-[15px] font-black uppercase tracking-wide text-white shadow-cta transition-all hover:-translate-y-0.5 hover:shadow-cta-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-green/30 sm:text-base"
+      >
+        <span
+          class="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full animate-sweep"
+          aria-hidden="true"></span>
+        <span class="relative">{hero.ctaLabel}</span>
+      </a>
+      <p class="mt-3 text-center text-[11px] font-medium text-brand-ink/45">
+        {hero.ctaSub}
+      </p>
+    </div>
+  </div>
+</section>

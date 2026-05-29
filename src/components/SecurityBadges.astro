@@ -1,0 +1,17 @@
+---
+import { copy } from '../lib/copy.js';
+const { security } = copy;
+---
+
+<section class="bg-white py-4" aria-label="Pagamento seguro">
+  <div class="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-5 px-5 sm:px-8">
+    {
+      security.items.map((item) => (
+        <span class="inline-flex items-center gap-1.5 text-[11.5px] font-semibold text-brand-ink/55">
+          <span aria-hidden="true">{item.icon}</span>
+          {item.label}
+        </span>
+      ))
+    }
+  </div>
+</section>

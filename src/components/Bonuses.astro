@@ -1,0 +1,55 @@
+---
+import { Image } from 'astro:assets';
+import { copy } from '../lib/copy.js';
+
+import bonus1 from '../assets/bonus-1.webp';
+import bonus2 from '../assets/bonus-2.webp';
+import bonus3 from '../assets/bonus-3.webp';
+import bonus4 from '../assets/bonus-4.webp';
+
+const sources = [bonus1, bonus2, bonus3, bonus4];
+const { bonuses } = copy;
+const items = bonuses.items.map((b, i) => ({ ...b, src: sources[i] }));
+---
+
+<section aria-labelledby="bonuses-title" class="bg-gradient-to-b from-white via-[#fff8fb] to-white py-14">
+  <div class="mx-auto max-w-3xl px-5 sm:px-8">
+    <h2
+      id="bonuses-title"
+      class="text-center text-[26px] font-black leading-tight text-brand-ink sm:text-[30px]"
+    >
+      {bonuses.title}{' '}
+      <span class="text-brand-red-dark">{bonuses.titleHighlight}</span>
+    </h2>
+
+    <div class="mt-8 grid gap-5 sm:grid-cols-2">
+      {
+        items.map((b) => (
+          <article class="group relative overflow-hidden rounded-2xl border border-[#f0d6e8] bg-white p-5 shadow-card transition hover:-translate-y-1 hover:border-brand-red-dark/40">
+            <span class="absolute right-4 top-4 inline-flex rounded-full bg-brand-red-dark px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.18em] text-white shadow-[0_6px_16px_-6px_rgba(192,0,106,0.7)]">
+              {b.tag}
+            </span>
+            <h3 class="pr-20 text-[15px] font-extrabold leading-snug text-brand-ink">
+              {b.title}
+            </h3>
+            <p class="mt-1.5 text-[12.5px] leading-relaxed text-brand-ink/55">
+              {b.description}
+            </p>
+            <div class="mt-4 overflow-hidden rounded-xl">
+              <Image
+                src={b.src}
+                alt={b.alt}
+                widths={[320, 480, 640]}
+                sizes="(min-width: 640px) 320px, 88vw"
+                formats={['avif', 'webp']}
+                quality={80}
+                loading="lazy"
+                class="h-auto w-full"
+              />
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

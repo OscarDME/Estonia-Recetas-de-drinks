@@ -1,0 +1,55 @@
+---
+import { copy } from '../lib/copy.js';
+const { benefits, pricing } = copy;
+const targetId = pricing.sectionId;
+---
+
+<section
+  aria-labelledby="benefits-title"
+  class="bg-gradient-to-b from-[#fff8fb] to-white py-12"
+>
+  <div class="mx-auto max-w-3xl px-5 sm:px-8">
+    <h2 id="benefits-title" class="sr-only">{benefits.intro}</h2>
+    <p class="text-balance text-center text-[15px] leading-relaxed text-brand-ink/75 sm:text-base">
+      {benefits.intro}{' '}
+      <strong class="font-extrabold text-brand-red-dark">{benefits.introStrong}</strong>
+    </p>
+
+    <ul class="mt-7 grid gap-3 sm:grid-cols-2">
+      {
+        benefits.items.map((item) => (
+          <li class="group flex items-start gap-3 rounded-2xl border border-[#f0d6e8] bg-white px-4 py-3.5 shadow-soft transition hover:-translate-y-0.5 hover:border-brand-green/40 hover:shadow-card">
+            <span
+              class="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-green text-white shadow-[0_4px_10px_-2px_rgba(0,194,71,0.55)]"
+              aria-hidden="true"
+            >
+              <svg viewBox="0 0 12 12" class="h-3 w-3 fill-none stroke-white" stroke-width="2.4">
+                <path
+                  d="M2 6l3 3 5-5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span class="text-[14px] font-semibold leading-snug text-brand-ink">
+              {item}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-8">
+      <a
+        href={`#${targetId}`}
+        data-cta="benefits"
+        class="group relative block w-full overflow-hidden rounded-2xl bg-gradient-to-br from-brand-green-light to-brand-green-dark px-6 py-5 text-center text-[15px] font-black uppercase tracking-wide text-white shadow-cta transition-all hover:-translate-y-0.5 hover:shadow-cta-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-green/30"
+      >
+        <span
+          class="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full animate-sweep"
+          aria-hidden="true"></span>
+        <span class="relative">{benefits.ctaLabel}</span>
+      </a>
+    </div>
+  </div>
+</section>

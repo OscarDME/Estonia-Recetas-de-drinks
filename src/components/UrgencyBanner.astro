@@ -1,0 +1,14 @@
+---
+import { copy } from '../lib/copy.js';
+const { urgency } = copy;
+---
+
+<section class="bg-white py-6" aria-label={urgency.text}>
+  <div class="mx-auto max-w-3xl px-5 sm:px-8">
+    <div
+      class="rounded-2xl border border-[#ffcccc] bg-[#fff5f5] px-5 py-4 text-center text-[13px] font-bold text-[#c00] sm:text-[14px]"
+    >
+      {urgency.text}
+    </div>
+  </div>
+</section>
